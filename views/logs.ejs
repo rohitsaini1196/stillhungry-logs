@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <style></style>
+    <title>Logs</title>
+    <script>
+      var images = <%-JSON.stringify(images)%>;
+      console.log(images);
+    </script>
+
+    <style></style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">StillHungry</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/logs">Logs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="/timelogs">Time Logs</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/logout">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+            Logout
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+      <h2>Image Gallery</h2>
+
+      <p>Click on the images to enlarge them.</p>
+      <div class="row" id="main-gg">
+        <!-- <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="/w3images/fjords.jpg" target="_blank">
+              <img src="/w3images/fjords.jpg" alt="" style="width:100%" />
+              <div class="caption">
+                <p>
+                  Lorem ipsum donec id elit non mi porta gravida at eget metus.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <script>
+      var mainGG = document.getElementById("main-gg");
+      console.log(mainGG);
+      var ggddata;
+
+      if (images.length < 1) {
+        var para = document.createElement("DIV");
+        para.setAttribute("class", "col-md-4");
+        para.innerHTML = `
+                <div class="thumbnail">
+                
+                <div class="caption">
+                    <p> You don't have any image in your logs yet. </p>
+                </div>
+                 
+                
+                  </div>`;
+
+        mainGG.appendChild(para);
+      } else {
+        for (var i = 0; i < images.length; i++) {
+          var para = document.createElement("DIV");
+          para.setAttribute("class", "col-md-4");
+          para.innerHTML = `
+                <div class="thumbnail">
+                <a href="${images[i]}" target="_blank">
+                <img src="${images[i]}" alt="" style="width:auto; height:auto;" />
+                <div class="caption">
+                    <p> Your Image is nice </p>
+                </div>
+                 </a>
+                
+                  </div>`;
+
+          mainGG.appendChild(para);
+        }
+      }
+    </script>
+  </body>
+</html>
